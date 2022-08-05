@@ -1,6 +1,6 @@
 import sys
 import os
-from methods import param_dict
+from methods import param_dict, colorcode
 
 """ 
 The needed parameters are:
@@ -19,11 +19,16 @@ else:
     print('Executing')
     params = param_dict(args)
 
+
 """ Setting the DIRECTORY """
-if "--dir" in params.keys():
-    dir = params["--dir"]
-else:
-    dir = os.getcwd()
+dir = os.getcwd() if "--dir" not in params.keys() else params["--dir"]
+
+""" Check the branch """
+branch = "main" if "--branch" not in params.keys() else params["--branch"]
+
+""" Commit message template """
+
+print(f'{dir} {branch}')
 
 
     
