@@ -19,7 +19,7 @@ The needed parameters are:
 args = sys.argv[1:]
 
 """ Check if the any help is needed else parse the arguments """
-if len(args) == 0 or "--help" in args:
+if "--help" in args:
     help()
     sys.exit(0)
 else:
