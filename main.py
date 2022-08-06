@@ -1,9 +1,12 @@
+import atexit
 import sys
 import os
 import subprocess
 import re
 
-from methods import param_dict, colorcode, commit_message
+from methods import param_dict, colorcode, commit_message, beforeexit, push, test_push
+
+atexit.register(beforeexit)
 
 """ 
 The needed parameters are:
@@ -46,14 +49,32 @@ branch = cur_branch if "--branch" not in params.keys() else params["--branch"]
 """ Commit message template """
 commit_template = "auto-commit-#num#" if "--commit" not in params.keys() else params["--commit"]
 
+""" Interval """
+interval = 5
+try:
+    interval = 5 if "--interval" not in params.keys() else float(params["--interval"])
+except ValueError:
+    print("{error}".format(error=colorcode("Given --interval is not a number", "white", "bg-red")))
+    sys.exit(0)
+except Exception as e:
+    print(f'ERROR: {e}')
+    sys.exit(0)
+
+
+print('\n')
 
 """ SET UP THE BRANCH """
 try:
     subprocess.check_output(["git", "-C", dir, "branch", "-M", branch])
+    print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
 except Exception as e:
     print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
     sys.exit(0)
 
+
+
+""" Push periodically """
+test_push(commit_template, dir, branch, interval)
 
 
 # print(f'{dir} \n{branch}\n{commit_template}')

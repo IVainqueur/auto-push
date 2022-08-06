@@ -1,4 +1,7 @@
 import re
+import subprocess
+import sys
+from threading import Timer
 from uuid import uuid4
 
 
@@ -32,7 +35,7 @@ def param_dict(arr):
             print(e)
     return classified
 
-def colorcode(text, color, bg):
+def colorcode(text, color = '', bg = ''):
     if color not in colors_with_codes.keys():
         return f'{text}'
 
@@ -47,3 +50,28 @@ def commit_message(template):
     else:
         template = f'{template}-{uuid4().hex}'
     return template
+
+def _push(ct, dir, branch, interval):
+    return push(ct, dir, branch, interval)
+
+def push(ct, dir, branch, interval):
+    try:
+        subprocess.check_output(["git", "-C", dir, "add", "."])
+        # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
+        subprocess.check_output(["git", "-C", dir, "commit", "-m", "\'{m}\'".format(m=commit_message(ct))])
+        # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
+        subprocess.check_output(["git", "-C", dir, "push", "origin", branch])
+        # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
+    except Exception as e:
+        print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
+        sys.exit(0)
+    finally:
+        Timer(interval*60, push).start()
+
+def test_push(ct, dir, branch, interval):
+    print(f"got these {ct}, {dir}, {branch}, {interval}")
+    Timer(interval*60, _push(ct, dir, branch, interval)).start()
+
+
+def beforeexit():
+    print('\n\n\n=================================\n    THANKS FOR USING AUTO-PUSH\n=================================\n\n')
