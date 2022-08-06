@@ -75,3 +75,16 @@ def test_push(ct, dir, branch, interval):
 
 def beforeexit():
     print('\n\n\n=================================\n    THANKS FOR USING AUTO-PUSH\n=================================\n\n')
+
+def help():
+    print("===================================")
+    print("    AUTO-PUSH")
+    print("===================================")
+    print("Usage: python3 main.py [--dir] [--branch] [--commit] [--interval]")
+    print("\n--dir\tis the path to the directory you want to push. Defaults to CURRENT DIRECTORY")
+    print("\n--branch\tis the branch to which you want to push. Default is main")
+    print("\n--commit\tis a template for the commit message.")
+    print("\tFor example: if --commit='auto-commit' then all the commit message will be 'auto-commit-[uuid]'.")
+    print("\tNote: You can also put the uuid anywhere else in the string like so: --commit='commit-%num%-automatic'")
+    print("The --commit above will be turned into 'custom-[uuid]-automatic'")
+    print("\n--interval\tis the interval between pushes in minutes.\n\n")

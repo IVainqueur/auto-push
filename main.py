@@ -4,7 +4,7 @@ import os
 import subprocess
 import re
 
-from methods import param_dict, colorcode, commit_message, beforeexit, push, test_push
+from methods import param_dict, colorcode, beforeexit, push, help
 
 atexit.register(beforeexit)
 
@@ -20,7 +20,8 @@ args = sys.argv[1:]
 
 """ Check if the any help is needed else parse the arguments """
 if len(args) == 0 or "--help" in args:
-    print('Help menu')
+    help()
+    sys.exit(0)
 else:
     print('Executing')
     params = param_dict(args)
