@@ -4,3 +4,5 @@
 cp ./auto-push ./main.py ./methods.py ~/.auto-push
 
 # Add the directory to PATH
+
+export PATH=$HOME/.auto-push:$PATH
