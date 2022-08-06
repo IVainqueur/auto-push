@@ -9,6 +9,9 @@ mkdir -p ~/.auto-push && cp ./auto-push ./main.py ./methods.py ~/.auto-push
 
 export PATH=$PATH:$HOME/.auto-push
 
+echo "export PATH=\$PATH:$HOME/.auto-push;" >> ~/.bashrc
+source ~/.bashrc
+
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
