@@ -13,7 +13,7 @@ The needed parameters are:
 - folder -> default: _currentdir
 - branch -> default: main
 - commit message template -> format `message-{uuid}`
-- 
+- interval
 """
 
 args = sys.argv[1:]
@@ -65,7 +65,7 @@ print('\n')
 
 """ SET UP THE BRANCH """
 try:
-    subprocess.check_output(["git", "-C", dir, "branch", "-M", branch])
+    subprocess.call(["git", "-C", dir, "branch", "-M", branch])
     print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
 except Exception as e:
     print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
@@ -74,7 +74,7 @@ except Exception as e:
 
 
 """ Push periodically """
-test_push(commit_template, dir, branch, interval)
+push(commit_template, dir, branch, interval)
 
 
 # print(f'{dir} \n{branch}\n{commit_template}')
