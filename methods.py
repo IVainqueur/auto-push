@@ -87,4 +87,4 @@ def help():
     print("\tFor example: if --commit='auto-commit' then all the commit message will be 'auto-commit-[uuid]'.")
     print("\tNote: You can also put the uuid anywhere else in the string like so: --commit='commit-#num#-automatic'")
     print("The --commit above will be turned into 'custom-[uuid]-automatic'")
-    print("\n--interval\tis the interval between pushes in minutes.\n\n")
+    print("\n--interval\tis the interval between pushes in minutes. Default is 5 minutes\n\n")
