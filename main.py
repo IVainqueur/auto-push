@@ -77,7 +77,6 @@ except Exception as e:
 push(commit_template, dir, branch, interval)
 
 
-# print(f'{dir} \n{branch}\n{commit_template}')
 
 
     
