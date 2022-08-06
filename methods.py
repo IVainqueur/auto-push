@@ -1,3 +1,7 @@
+import re
+from uuid import uuid4
+
+
 colors_with_codes = {
     "black": "\x1B[30m",
     "bg-black": "\x1B[40m",
@@ -36,3 +40,10 @@ def colorcode(text, color, bg):
         return f'{colors_with_codes[color]}{text}{colors_with_codes["clear"]}'
     
     return f'{colors_with_codes[color]}{colors_with_codes[bg]}{text}{colors_with_codes["clear"]}'
+
+def commit_message(template):
+    if re.search("#num#", template):
+        template = re.sub("#num#", uuid4().hex, template)
+    else:
+        template = f'{template}-{uuid4().hex}'
+    return template
