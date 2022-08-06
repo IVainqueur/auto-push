@@ -55,12 +55,12 @@ def commit_message(template):
 
 def push(ct, dir, branch, interval):
     try:
-        subprocess.call(["git", "-C", dir, "add", "."])
+        subprocess.call(["git", "-C", dir, "add", "."], stdout=subprocess.DEVNULL)
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
-        subprocess.call(["git", "-C", dir, "commit", "-m", "{m}".format(m=commit_message(ct))])
+        subprocess.call(["git", "-C", dir, "commit", "-m", "{m}".format(m=commit_message(ct))], stdout=subprocess.DEVNULL)
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
-        subprocess.call(["git", "-C", dir, "push", "origin", branch])
-        # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
+        subprocess.call(["git", "-C", dir, "push", "origin", branch], stdout=subprocess.DEVNULL)
+        print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
     except Exception as e:
         print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
         sys.exit(0)
