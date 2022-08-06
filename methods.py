@@ -85,6 +85,6 @@ def help():
     print("\n--branch\tis the branch to which you want to push. Default is the result of the 'git branch' command.")
     print("\n--commit\tis a template for the commit message. Default is 'auto-commit-[uuid]")
     print("\tFor example: if --commit='auto-commit' then all the commit message will be 'auto-commit-[uuid]'.")
-    print("\tNote: You can also put the uuid anywhere else in the string like so: --commit='commit-%num%-automatic'")
+    print("\tNote: You can also put the uuid anywhere else in the string like so: --commit='commit-#num#-automatic'")
     print("The --commit above will be turned into 'custom-[uuid]-automatic'")
     print("\n--interval\tis the interval between pushes in minutes.\n\n")
