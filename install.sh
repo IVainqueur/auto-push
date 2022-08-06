@@ -9,6 +9,9 @@ cp ./auto-push ./main.py ./methods.py ~/.auto-push
 
 export PATH=$HOME/.auto-push:$PATH
 
-echo "\x1B[32m===================================="
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo "${GREEN}===================================="
 echo "   THANKS FOR INSTALLING AUTO-PUSH  "
-echo "====================================\x1B[0m"
+echo "====================================${NC}"
