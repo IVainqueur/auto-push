@@ -55,6 +55,7 @@ def commit_message(template):
 
 def push(ct, dir, branch, interval):
     try:
+        print("\n--> Pushing to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "add", "."], stdout=subprocess.DEVNULL)
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "commit", "-m", "{m}".format(m=commit_message(ct))], stdout=subprocess.DEVNULL)
