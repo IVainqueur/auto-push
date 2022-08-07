@@ -1,12 +1,16 @@
 import re
 import subprocess
 import sys
+import signal
+import os
 from threading import Timer
 from uuid import uuid4
 from functools import partial
+from pynput.keyboard import Key
+from platform import platform
 
 
-colors_with_codes = {
+COLORS_WITH_CODES = {
     "black": "\x1B[30m",
     "bg-black": "\x1B[40m",
     "red": "\x1B[31m",
@@ -20,6 +24,18 @@ colors_with_codes = {
     "white": "\x1B[37m",
     "bg-white": "\x1B[47m",
     "clear": "\x1B[0m"
+}
+
+
+
+def customexit():
+    if "windows" in platform().lower():
+        os._exit(0)
+    else:
+        os.kill(os.getpid(), signal.SIGINT)
+
+KEYS_WITH_ACTIONS = {
+    "'q'": customexit
 }
 
 def param_dict(arr):
@@ -37,13 +53,13 @@ def param_dict(arr):
     return classified
 
 def colorcode(text, color = '', bg = ''):
-    if color not in colors_with_codes.keys():
+    if color not in COLORS_WITH_CODES.keys():
         return f'{text}'
 
-    if bg not in colors_with_codes.keys():
-        return f'{colors_with_codes[color]}{text}{colors_with_codes["clear"]}'
+    if bg not in COLORS_WITH_CODES.keys():
+        return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
-    return f'{colors_with_codes[color]}{colors_with_codes[bg]}{text}{colors_with_codes["clear"]}'
+    return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
 
 def commit_message(template):
     if re.search("#num#", template):
@@ -53,8 +69,10 @@ def commit_message(template):
     return template
 
 
-def push(ct, dir, branch, interval):
+def push(ct, dir, branch, interval, beforemethod=None):
     try:
+        if beforemethod:
+            beforemethod()
         print("\n--> Pushing to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "add", "."], stdout=subprocess.DEVNULL)
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
@@ -64,9 +82,9 @@ def push(ct, dir, branch, interval):
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
     except Exception as e:
         print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
-        sys.exit(0)
+        customexit()
     finally:
-        Timer(interval*60, partial(push, ct, dir, branch, interval)).start()
+        Timer(interval*60, partial(push, ct, dir, branch, interval, beforemethod)).start()
 
 def test_push(ct, dir, branch, interval):
     print(f"got these {ct}, {dir}, {branch}, {interval}")
@@ -87,4 +105,10 @@ def help():
     print("\tFor example: if --commit='auto-commit' then all the commit message will be 'auto-commit-[uuid]'.")
     print("\tNote: You can also put the uuid anywhere else in the string like so: --commit='commit-#num#-automatic'")
     print("The --commit above will be turned into 'custom-[uuid]-automatic'")
-    print("\n--interval\tis the interval between pushes in minutes. Default is 5 minutes\n\n")
+    print("\n--interval\tis the interval between pushes in minutes. Default is 5 minutes\n")
+    print("Note: You can click q anytime to quit\n\n")
+
+def listenForKeys(key):
+    action = KEYS_WITH_ACTIONS.get(repr(key), None)
+    if action:
+        action()
