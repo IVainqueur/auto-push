@@ -1,5 +1,7 @@
 # Installing Auto-Push
+## On Linux
 * run `chmod +x ./install.sh`
 * run ` ./install.sh`
-
-> Note: This only works for linux users, for now!
+## On Windows
+* run the `win64-installer.exe` file ( simply double click )
+* Add `C:\\Program Files\auto-push` to your PATH environment variable
