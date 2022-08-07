@@ -27,7 +27,8 @@ if "--help" in args:
     help()
     customexit()
 else:
-    print('Executing')
+    print('=============== AUTO-PUSH is starting ===============')
+    print('Press q at any point in time to quit')
     params = param_dict(args)
 
 
