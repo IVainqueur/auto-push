@@ -5,3 +5,5 @@ test*.*
 windows.*
 run.bat
 beforemod.*
+*.spec
+/build
