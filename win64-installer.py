@@ -11,7 +11,7 @@ if is_admin():
     cmd = [
         "if not exist \"C:\\Program Files\\auto-push\" mkdir \"C:\\Program Files\\auto-push\"",
         "copy \".\\dist\\auto-push.exe\" \"C:\\Program Files\\auto-push\"",
-        "SETX {0} {1}".format("PATH", (os.environ["PATH"] + "\"C:\\Program Files\\auto-push\""))
+        "setx {0} {1}".format("PATH", (os.environ["PATH"] + "\"C:\\Program Files\\auto-push\""))
     ]
     for command in cmd:
         os.system(command)
