@@ -83,6 +83,7 @@ beforemethod = None
 
 if "--before-mod" and "--before-method" in params.keys():
     try:
+        sys.path.append(os.getcwd())
         module = __import__(params["--before-mod"])
         beforemethod = getattr(module, params["--before-method"])
         print("[LOG]: Found before-method")
