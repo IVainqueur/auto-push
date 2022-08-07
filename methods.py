@@ -1,10 +1,13 @@
 import re
 import subprocess
 import sys
+import signal
+import os
 from threading import Timer
 from uuid import uuid4
 from functools import partial
 from pynput.keyboard import Key
+from platform import platform
 
 
 COLORS_WITH_CODES = {
