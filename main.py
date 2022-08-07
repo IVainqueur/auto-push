@@ -4,7 +4,7 @@ import os
 import subprocess
 import re
 
-from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys
+from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit
 from pynput.keyboard import Key, Listener
 
 listener = Listener(on_press=listenForKeys)
@@ -25,7 +25,7 @@ args = sys.argv[1:]
 """ Check if the any help is needed else parse the arguments """
 if "--help" in args:
     help()
-    sys.exit(0)
+    customexit()
 else:
     print('Executing')
     params = param_dict(args)
@@ -41,7 +41,7 @@ try:
     cur_branch = subprocess.check_output(["git", "-C", dir, "branch"])
 except Exception as e:
     print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
-    sys.exit(0)
+    customexit()
 
 regCheck = re.search(r"(\*\s((.*){2,}))", cur_branch.decode())
 
@@ -60,10 +60,10 @@ try:
     interval = 5 if "--interval" not in params.keys() else float(params["--interval"])
 except ValueError:
     print("{error}".format(error=colorcode("Given --interval is not a number", "white", "bg-red")))
-    sys.exit(0)
+    customexit()
 except Exception as e:
     print(f'ERROR: {e}')
-    sys.exit(0)
+    customexit()
 
 
 print('\n')
@@ -74,7 +74,7 @@ try:
     print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
 except Exception as e:
     print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
-    sys.exit(0)
+    customexit()
 
 
 

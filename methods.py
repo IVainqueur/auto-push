@@ -23,8 +23,16 @@ COLORS_WITH_CODES = {
     "clear": "\x1B[0m"
 }
 
+
+
+def customexit():
+    if "windows" in platform().lower():
+        os._exit(0)
+    else:
+        os.kill(os.getpid(), signal.SIGINT)
+
 KEYS_WITH_ACTIONS = {
-    'q': sys.exit
+    "'q'": customexit
 }
 
 def param_dict(arr):
@@ -69,7 +77,7 @@ def push(ct, dir, branch, interval):
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
     except Exception as e:
         print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
-        sys.exit(0)
+        customexit()
     finally:
         Timer(interval*60, partial(push, ct, dir, branch, interval)).start()
 
@@ -95,6 +103,6 @@ def help():
     print("\n--interval\tis the interval between pushes in minutes. Default is 5 minutes\n\n")
 
 def listenForKeys(key):
-    action = KEYS_WITH_ACTIONS.get(key, None)
+    action = KEYS_WITH_ACTIONS.get(repr(key), None)
     if action:
         action()
