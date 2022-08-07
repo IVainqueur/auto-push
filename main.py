@@ -77,6 +77,18 @@ except Exception as e:
     customexit()
 
 
+""" Check if there is a module to run before the every push"""
+module = None
+beforemethod = None
+
+if "--before-mod" and "--before-method" in params.keys():
+    try:
+        module = __import__(params["--before-mod"])
+        beforemethod = getattr(module, params["--before-method"])
+    except Exception as e:
+        print(f'ERROR {e}')
+        os._exit(0)
+
 
 """ Push periodically """
 push(commit_template, dir, branch, interval)
