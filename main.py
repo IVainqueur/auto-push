@@ -85,6 +85,7 @@ if "--before-mod" and "--before-method" in params.keys():
     try:
         module = __import__(params["--before-mod"])
         beforemethod = getattr(module, params["--before-method"])
+        print("[LOG]: Found before-method")
     except Exception as e:
         print(f'ERROR IMPORTING before-method\n ****** \n{e} \n******')
 
