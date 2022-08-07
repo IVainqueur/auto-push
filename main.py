@@ -82,7 +82,6 @@ module = None
 beforemethod = None
 
 if "--before-mod" and "--before-method" in params.keys():
-    os._exit(0)
     try:
         module = __import__(params["--before-mod"])
         beforemethod = getattr(module, params["--before-method"])
