@@ -4,7 +4,11 @@ import os
 import subprocess
 import re
 
-from methods import param_dict, colorcode, beforeexit, push, help
+from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys
+from pynput.keyboard import Key, Listener
+
+listener = Listener(on_press=listenForKeys)
+listener.start()
 
 atexit.register(beforeexit)
 

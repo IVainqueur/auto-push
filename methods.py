@@ -4,9 +4,10 @@ import sys
 from threading import Timer
 from uuid import uuid4
 from functools import partial
+from pynput.keyboard import Key
 
 
-colors_with_codes = {
+COLORS_WITH_CODES = {
     "black": "\x1B[30m",
     "bg-black": "\x1B[40m",
     "red": "\x1B[31m",
@@ -20,6 +21,10 @@ colors_with_codes = {
     "white": "\x1B[37m",
     "bg-white": "\x1B[47m",
     "clear": "\x1B[0m"
+}
+
+KEYS_WITH_ACTIONS = {
+    'q': sys.exit
 }
 
 def param_dict(arr):
@@ -37,13 +42,13 @@ def param_dict(arr):
     return classified
 
 def colorcode(text, color = '', bg = ''):
-    if color not in colors_with_codes.keys():
+    if color not in COLORS_WITH_CODES.keys():
         return f'{text}'
 
-    if bg not in colors_with_codes.keys():
-        return f'{colors_with_codes[color]}{text}{colors_with_codes["clear"]}'
+    if bg not in COLORS_WITH_CODES.keys():
+        return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
-    return f'{colors_with_codes[color]}{colors_with_codes[bg]}{text}{colors_with_codes["clear"]}'
+    return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
 
 def commit_message(template):
     if re.search("#num#", template):
@@ -88,3 +93,8 @@ def help():
     print("\tNote: You can also put the uuid anywhere else in the string like so: --commit='commit-#num#-automatic'")
     print("The --commit above will be turned into 'custom-[uuid]-automatic'")
     print("\n--interval\tis the interval between pushes in minutes. Default is 5 minutes\n\n")
+
+def listenForKeys(key):
+    action = KEYS_WITH_ACTIONS.get(key, None)
+    if action:
+        action()
