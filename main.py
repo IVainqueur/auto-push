@@ -86,12 +86,11 @@ if "--before-mod" and "--before-method" in params.keys():
         module = __import__(params["--before-mod"])
         beforemethod = getattr(module, params["--before-method"])
     except Exception as e:
-        print(f'ERROR {e}')
-        os._exit(0)
+        print(f'ERROR IMPORTING before-method\n ****** \n{e} \n******')
 
 
 """ Push periodically """
-push(commit_template, dir, branch, interval)
+push(commit_template, dir, branch, interval, beforemethod)
 
 
 

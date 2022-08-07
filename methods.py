@@ -69,8 +69,10 @@ def commit_message(template):
     return template
 
 
-def push(ct, dir, branch, interval):
+def push(ct, dir, branch, interval, beforemethod=None):
     try:
+        if beforemethod:
+            beforemethod()
         print("\n--> Pushing to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "add", "."], stdout=subprocess.DEVNULL)
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
@@ -82,7 +84,7 @@ def push(ct, dir, branch, interval):
         print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
         customexit()
     finally:
-        Timer(interval*60, partial(push, ct, dir, branch, interval)).start()
+        Timer(interval*60, partial(push, ct, dir, branch, interval, beforemethod)).start()
 
 def test_push(ct, dir, branch, interval):
     print(f"got these {ct}, {dir}, {branch}, {interval}")
