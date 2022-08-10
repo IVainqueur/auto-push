@@ -1,7 +1,7 @@
 import ctypes, sys
 import os
 
-path = os.getcwd()
+_path = os.getcwd()
 # FILENAME_LENGTH = len(os.path.basename(__file__))
 # PATH_LENGTH = len(path)
 # 
@@ -18,7 +18,7 @@ def is_admin():
 if is_admin():
     cmd = [
         r'''if not exist "C:\\Program Files\auto-push" mkdir "C:\\Program Files\auto-push"''',
-        f'''copy "{path}\\auto-push.exe" "C:\\\\Program Files\\auto-push"''',
+        f'''copy "{_path}\\auto-push.exe" "C:\\\\Program Files\\auto-push"''',
         "msg %username% Auto-Push is has been installed successfully. Final step is to add 'C:\\\\Program Files\\auto-push' to the PATH environment variable"
     ]
     
