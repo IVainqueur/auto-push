@@ -23,7 +23,7 @@ if is_admin():
         print("Running: ",command)
         os.system(command)
     
-    input("Press Any Key To Close This...")
+    input("\n\nPress Any Key To Close This...")
 
 else:
     # Re-run the program with admin rights
