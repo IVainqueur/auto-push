@@ -15,7 +15,7 @@ def is_admin():
 if is_admin():
     cmd = [
         r'''if not exist "C:\\Program Files\auto-push" mkdir "C:\\Program Files\auto-push"''',
-        '''copy "{0}dist\\auto-push.exe" "C:\\\\Program Files\\auto-push"'''.format(path),
+        f'''copy "{path}dist\\auto-push.exe" "C:\\\\Program Files\\auto-push"''',
         "msg %username% Auto-Push is has been installed successfully. Final step is to add 'C:\\\\Program Files\\auto-push' to the PATH environment variable"
     ]
     
