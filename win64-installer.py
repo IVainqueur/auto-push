@@ -18,7 +18,9 @@ if is_admin():
         '''copy "{0}dist\\auto-push.exe" "C:\\\\Program Files\\auto-push"'''.format(path),
         "msg %username% Auto-Push is has been installed successfully. Final step is to add 'C:\\\\Program Files\\auto-push' to the PATH environment variable"
     ]
+    
     for command in cmd:
+        print("Running: ",cmd)
         os.system(command)
     
     input("Press Any Key To Close This...")
