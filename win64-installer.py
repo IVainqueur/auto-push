@@ -1,7 +1,7 @@
 import ctypes, sys
 import os
 
-path = os.path.realpath(os.path.dirname(__file__))
+path = os.path.abspath(os.path.dirname(__file__))
 FILENAME_LENGTH = len(os.path.basename(__file__))
 PATH_LENGTH = len(path)
 
