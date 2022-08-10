@@ -2,7 +2,7 @@ import ctypes, sys
 import os
 
 path = os.path.realpath(__file__)
-FILENAME_LENGTH = len(__file__)
+FILENAME_LENGTH = len(os.path.basename(__file__))
 PATH_LENGTH = len(path)
 
 path = path[:(PATH_LENGTH-FILENAME_LENGTH)]
