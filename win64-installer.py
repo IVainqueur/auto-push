@@ -21,6 +21,8 @@ if is_admin():
     for command in cmd:
         os.system(command)
     
+    input("Press Any Key To Close This...")
+
 else:
     # Re-run the program with admin rights
     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
