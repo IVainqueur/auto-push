@@ -7,6 +7,9 @@ PATH_LENGTH = len(path)
 
 path = path[:(PATH_LENGTH-FILENAME_LENGTH)]
 
+print("__file__: ",__file__)
+print("getcwd: ", os.getcwd())
+
 def is_admin():
     try:
         return ctypes.windll.shell32.IsUserAnAdmin()
