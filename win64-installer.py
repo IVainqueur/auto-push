@@ -20,7 +20,7 @@ if is_admin():
     ]
     
     for command in cmd:
-        print("Running: ",cmd)
+        print("Running: ",command)
         os.system(command)
     
     input("Press Any Key To Close This...")
