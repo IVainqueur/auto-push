@@ -12,6 +12,7 @@ from platform import platform
 ispaused = False
 
 _dir = os.getcwd()
+_branch = "main"
 
 class PauseException(Exception):
     pass
