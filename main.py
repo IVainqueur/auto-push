@@ -8,7 +8,8 @@ from threading import Timer
 
 from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 
-if os
+if "windows" in platform().lower():
+        os.system('cls')
 
 
 atexit.register(beforeexit)
