@@ -48,7 +48,7 @@ def pause_or_play():
 
 def change_branch():
     print("Changing branch")
-    p
+    force_paused = ispaused
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
