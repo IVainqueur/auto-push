@@ -10,7 +10,7 @@ from platform import platform
 from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 
 if "windows" in platform().lower():
-    os.system('color')
+    os.system('')
 
 
 atexit.register(beforeexit)
