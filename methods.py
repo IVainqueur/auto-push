@@ -185,4 +185,5 @@ def listenForKeys(key):
         action()
         return
     # If the key is not a single key command
+    if key
 
