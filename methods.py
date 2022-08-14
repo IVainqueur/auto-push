@@ -42,7 +42,10 @@ def customexit():
         os.kill(os.getpid(), signal.SIGINT)
 
 def clear():
-    
+    if "windows" in platform().lower():
+        os._exit(0)
+    else:
+        os.kill(os.getpid(), signal.SIGINT)
 def pause_or_play():
     global ispaused
     ispaused = not ispaused
