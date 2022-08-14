@@ -103,7 +103,7 @@ def setbranch(dir, branch):
     global _dir
     global _branch
     _dir = dir
-    _dir = dir
+    _branch = branch
     try:
         subprocess.call(["git", "-C", dir, "branch", "-M", branch])
         print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
