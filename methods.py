@@ -13,8 +13,10 @@ ispaused = False
 _dir = os.getcwd()
 _branch = "main"
 
+
 class PauseException(Exception):
     pass
+
 
 COLORS_WITH_CODES = {
     "black": "\x1B[30m",
@@ -34,12 +36,12 @@ COLORS_WITH_CODES = {
 }
 
 
-
 def customexit():
     if "windows" in platform().lower():
         os._exit(0)
     else:
         os.kill(os.getpid(), signal.SIGINT)
+
 
 def clear():
     if "windows" in platform().lower():
@@ -47,8 +49,10 @@ def clear():
     else:
         os.system('clear')
 
+
 def printcommands():
     print("q - quit\tp - pause or resume\tcb - change branch")
+
 
 def pause_or_play():
     global ispaused
@@ -58,6 +62,7 @@ def pause_or_play():
     else:
         print("===> RESUMING...")
 
+
 def change_branch(newbranch):
     global ispaused
     global _dir
@@ -66,13 +71,15 @@ def change_branch(newbranch):
     force_pause = not ispaused
     if force_pause:
         pause_or_play()
-    
+
     setbranch(_dir, newbranch)
+
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
     "'p'": pause_or_play
 }
+
 
 def param_dict(arr):
     classified = {}
@@ -88,7 +95,9 @@ def param_dict(arr):
             print(e)
     return classified
 
-def colorcode(text, color = '', bg = ''):
+
+def colorcode(text, color='', bg=''):
+        os.system('')
     color = COLORS_WITH_CODES.get(color, "")
     bg = COLORS_WITH_CODES.get(bg, "")
     # if color == 'none' and bg == 'none':
@@ -135,7 +144,6 @@ def push(ct, dir, branch, interval, beforemethod=None):
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "push", "origin", branch], stdout=subprocess.DEVNULL)
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
-        os.system('')
         # clear()
         print('\n')
         printcommands()
