@@ -81,7 +81,7 @@ KEYS_WITH_ACTIONS = {
 }
 
 OTHER_CMDS = {
-    'cb'
+    "'cb'": change_branch
 }
 
 
