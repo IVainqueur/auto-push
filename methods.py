@@ -186,7 +186,7 @@ def help():
     print("Note: You can click q anytime to quit\n\n")
 
 def listenForKeys(key):
-    print(colorcode(f"Received {key}", bg="bg-green"))
+    print(colorcode(f"Received {key}", bg="bg-yellow"))
     action = KEYS_WITH_ACTIONS.get(repr(key), None)
     if action:
         action()
