@@ -23,7 +23,8 @@ COLORS_WITH_CODES = {
     "bg-blue": "\x1B[44m",
     "white": "\x1B[37m",
     "bg-white": "\x1B[47m",
-    "clear": "\x1B[0m"
+    "clear": "\x1B[0m",
+    "none": ""
 }
 
 
@@ -56,15 +57,15 @@ def param_dict(arr):
     return classified
 
 def colorcode(text, color = '', bg = ''):
-    color = COLORS_WITH_CODES.get(color, "clear")
-    bg = COLORS_WITH_CODES.get(bg, "clear")
+    color = COLORS_WITH_CODES.get(color, "")
+    bg = COLORS_WITH_CODES.get(bg, "")
     # if color == 'none' and bg == 'none':
     #     return f'{text}'
 
     # if bg == 'none':
     #     return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
-    return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
+    return f'{color}{bg}{text}{COLORS_WITH_CODES["clear"]}'
 
 def commit_message(template):
     if re.search("#num#", template):
