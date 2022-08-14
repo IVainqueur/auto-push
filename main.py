@@ -1,8 +1,10 @@
 import atexit
+from functools import partial
 import sys
 import os
 import subprocess
 import re
+from threading import Timer
 
 from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 # from pynput.keyboard import Key, Listener
@@ -89,7 +91,7 @@ if "--before-mod" and "--before-method" in params.keys():
 
 
 """ Push periodically """
-push(commit_template, dir, branch, interval, beforemethod)
+Timer(partial())
 
 """ Wait for key presses """
 while True:
