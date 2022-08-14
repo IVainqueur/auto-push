@@ -141,6 +141,8 @@ def commit_message(template):
 def push(ct, dir, branch, interval, beforemethod=None):
     clear()
     global ispaused
+    global _branch
+    branch = _branch
     try:
         global ispaused
         if ispaused:
