@@ -84,6 +84,14 @@ def colorcode(text, color = '', bg = ''):
     
     return f'{color}{bg}{text}{COLORS_WITH_CODES["clear"]}'
 
+def setbranch(dir, branch):
+    try:
+        subprocess.call(["git", "-C", dir, "branch", "-M", branch])
+        print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
+    except Exception as e:
+        print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
+        customexit()
+
 def commit_message(template):
     if re.search("#num#", template):
         template = re.sub("#num#", uuid4().hex, template)
