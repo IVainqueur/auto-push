@@ -80,6 +80,8 @@ KEYS_WITH_ACTIONS = {
     "'p'": pause_or_play
 }
 
+OTHER
+
 
 def param_dict(arr):
     classified = {}
@@ -181,4 +183,4 @@ def listenForKeys(key):
         action()
         return
     # If the key is not a single key command
-    
+
