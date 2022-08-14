@@ -5,6 +5,7 @@ import os
 import subprocess
 import re
 from threading import Timer
+from platform import platform
 
 from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 
