@@ -97,7 +97,7 @@ def param_dict(arr):
 
 
 def colorcode(text, color='', bg=''):
-        os.system('')
+    os.system('')
     color = COLORS_WITH_CODES.get(color, "")
     bg = COLORS_WITH_CODES.get(bg, "")
     # if color == 'none' and bg == 'none':
