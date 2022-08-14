@@ -39,6 +39,7 @@ def customexit():
     else:
         os.kill(os.getpid(), signal.SIGINT)
 def pause_or_play():
+    global ispaused
     ispaused = not ispaused
     if ispaused:
         print("===> PAUSED")
@@ -84,7 +85,9 @@ def commit_message(template):
 
 
 def push(ct, dir, branch, interval, beforemethod=None):
+    global ispaused
     try:
+        global ispaused
         if ispaused:
             raise PauseException
         if beforemethod:
