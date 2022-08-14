@@ -187,6 +187,7 @@ def listenForKeys(key):
     if len(key.rsplit(" ")) <= 1:
         return
     # If the key is not a single key command
-    command = OTHER_CMDS.get(key.rsplit(" "))
+    command = OTHER_CMDS.get(key.rsplit(" ")[0], None)
+    if 
     
 
