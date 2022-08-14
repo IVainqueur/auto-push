@@ -48,7 +48,7 @@ def clear():
         os.system('clear')
 
 def printcommands():
-    print("q- quit\t p- pause or resume\tcb-")
+    print("q- quit\t p- pause or resume\tcb- change branch")
 
 def pause_or_play():
     global ispaused
