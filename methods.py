@@ -9,6 +9,7 @@ from functools import partial
 from pynput.keyboard import Key
 from platform import platform
 
+ispaused = False
 
 COLORS_WITH_CODES = {
     "black": "\x1B[30m",
