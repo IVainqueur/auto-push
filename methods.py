@@ -58,10 +58,10 @@ def param_dict(arr):
 def colorcode(text, color = '', bg = ''):
     color = COLORS_WITH_CODES.get(color, "none")
     bg = COLORS_WITH_CODES.get(bg, "none")
-    if color not in COLORS_WITH_CODES.keys() and bg not in COLORS_WITH_CODES.keys():
+    if color == 'none' and bg == 'none':
         return f'{text}'
 
-    if bg not in COLORS_WITH_CODES.keys():
+    if bg == 'none':
         return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
     return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
