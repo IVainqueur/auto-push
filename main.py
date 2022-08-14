@@ -96,6 +96,8 @@ if "--before-mod" and "--before-method" in params.keys():
 """ Push periodically """
 push(commit_template, dir, branch, interval, beforemethod)
 
+""" Listen for key presses """
+
 
 
 
