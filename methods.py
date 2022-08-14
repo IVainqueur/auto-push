@@ -87,7 +87,7 @@ KEYS_WITH_ACTIONS = {
 }
 
 OTHER_CMDS = {
-    "'cb'": change_branch
+    "cb": change_branch
 }
 
 
@@ -196,7 +196,7 @@ def listenForKeys(key):
         return
     # If the key is not a single key command
     key_parsed = key.rsplit(" ")
-    print(colorcode(f"command {key_parsed[]}", bg="bg-yellow"))
+    print(colorcode(f"command {key_parsed[0]}", bg="bg-yellow"))
     command = OTHER_CMDS.get(key_parsed[0], None)
     if command:
         print(f"Calling {command} with parameters {key_parsed[1:]}")
