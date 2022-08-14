@@ -55,7 +55,7 @@ def change_branch():
     force_pause = not ispaused
     if force_pause:
         pause_or_play()
-    
+    setbranch(_dir, )
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
