@@ -50,7 +50,8 @@ def change_branch():
     global ispaused
     print("Changing branch")
     force_pause = not ispaused
-    if fau
+    if force_pause:
+        
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
