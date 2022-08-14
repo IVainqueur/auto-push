@@ -41,7 +41,8 @@ def customexit():
 def pause_or_play():
     ispaused = not ispaused
     if ispaused:
-        
+        print("===> PAUSED")
+        else
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
