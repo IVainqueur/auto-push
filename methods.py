@@ -186,7 +186,6 @@ def help():
     print("Note: You can click q anytime to quit\n\n")
 
 def listenForKeys(key):
-    print(colorcode(f"Received {key}", bg="bg-yellow"))
     action = KEYS_WITH_ACTIONS.get(repr(key), None)
     if action:
         action()
@@ -197,6 +196,8 @@ def listenForKeys(key):
         return
     # If the key is not a single key command
     key_parsed = key.rsplit(" ")
+    print
+    print(colorcode(f"Received {key}", bg="bg-yellow"))
     command = OTHER_CMDS.get(key_parsed[0], None)
     if command:
         print(f"Calling {command} with parameters {key_parsed[1:]}")
