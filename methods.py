@@ -40,6 +40,9 @@ def customexit():
         os._exit(0)
     else:
         os.kill(os.getpid(), signal.SIGINT)
+
+def clear():
+    
 def pause_or_play():
     global ispaused
     ispaused = not ispaused
