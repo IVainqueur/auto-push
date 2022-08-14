@@ -185,6 +185,5 @@ def listenForKeys(key):
         action()
         return
     # If the key is not a single key command
-    if len(key.rsplit(" ")) > 1:
-        
+    if len(key.rsplit(" ")) !< 1
 
