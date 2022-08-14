@@ -190,6 +190,7 @@ def listenForKeys(key):
     if action:
         action()
         return
+        
     if len(key.rsplit(" ")) <= 1:
         print(colorcode("Unknown command", bg="bg-red"))
         return
