@@ -11,6 +11,8 @@ from platform import platform
 
 ispaused = False
 
+class PauseException()
+
 COLORS_WITH_CODES = {
     "black": "\x1B[30m",
     "bg-black": "\x1B[40m",
