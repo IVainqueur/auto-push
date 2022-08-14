@@ -135,7 +135,6 @@ def push(ct, dir, branch, interval, beforemethod=None):
         customexit()
     finally:
         Timer(interval*60, partial(push, ct, dir, branch, interval, beforemethod)).start()
-        Timer().start()
 
 def test_push(ct, dir, branch, interval):
     print(f"got these {ct}, {dir}, {branch}, {interval}")
