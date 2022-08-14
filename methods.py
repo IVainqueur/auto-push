@@ -48,7 +48,7 @@ def clear():
         os.system('clear')
 
 def printcommands():
-    print("q-")
+    print("q- quit\t p-")
 
 def pause_or_play():
     global ispaused
