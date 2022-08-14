@@ -67,7 +67,7 @@ def change_branch(newbranch = _branch):
     global ispaused
     global _dir
     global _branch
-    print("Changing branch")
+    print(f"Changing branch to {newbranch}")
     force_pause = not ispaused
     if force_pause:
         pause_or_play()
