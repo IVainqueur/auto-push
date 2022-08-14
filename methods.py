@@ -16,17 +16,17 @@ class PauseException(Exception):
 
 COLORS_WITH_CODES = {
     "black": "\u001b[30m",
-    "bg-black": "\001b[40m",
-    "red": "\001b[31m",
-    "bg-red": "\001b[41m",
-    "green": "\001b[32m",
-    "bg-green": "\001b[42m",
-    "yellow": "\001b[33m",
-    "bg-yellow": "\001b[43m",
-    "blue": "\001b[34m",
-    "bg-blue": "\001b[44m",
-    "white": "\001b[37m",
-    "bg-white": "\001b[47m",
+    "bg-black": "\u001b[40m",
+    "red": "\u001b[31m",
+    "bg-red": "\u001b[41m",
+    "green": "\u001b[32m",
+    "bg-green": "\u001b[42m",
+    "yellow": "\u001b[33m",
+    "bg-yellow": "\u001b[43m",
+    "blue": "\u001b[34m",
+    "bg-blue": "\u001b[44m",
+    "white": "\u001b[37m",
+    "bg-white": "\u001b[47m",
     "clear": "\u001b[0m",
     "none": ""
 }
