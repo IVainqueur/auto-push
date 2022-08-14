@@ -51,7 +51,7 @@ def clear():
 
 
 def printcommands():
-    print(colorcode("q - quit\tp - pause or resume\tcb - change branch", color='ye'))
+    print(colorcode("q - quit\tp - pause or resume\tcb - change branch", color='yellow'))
 
 
 def pause_or_play():
@@ -144,8 +144,6 @@ def push(ct, dir, branch, interval, beforemethod=None):
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "push", "origin", branch], stdout=subprocess.DEVNULL)
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
-        # clear()
-        print('\n')
         printcommands()
     except PauseException:
         pass
