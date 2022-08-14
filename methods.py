@@ -38,12 +38,12 @@ def customexit():
         os._exit(0)
     else:
         os.kill(os.getpid(), signal.SIGINT)
-def pause():
+def pause_or_play():
     print("{0}".format(colorcode("Pausing", bg="bg-yellow")))
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
-    "'p'": pause
+    "'p'": pause_or_play
 }
 
 def param_dict(arr):
