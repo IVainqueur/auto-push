@@ -43,7 +43,7 @@ def customexit():
 
 def clear():
     if "windows" in platform().lower():
-        os._exit(0)
+        os.system('cls')
     else:
         os.kill(os.getpid(), signal.SIGINT)
 def pause_or_play():
