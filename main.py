@@ -5,7 +5,7 @@ import subprocess
 import re
 
 from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit
-from pynput.keyboard import Key, Listener
+# from pynput.keyboard import Key, Listener
 
 listener = Listener(on_press=listenForKeys)
 listener.start()
