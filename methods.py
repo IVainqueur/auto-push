@@ -33,6 +33,8 @@ def customexit():
         os._exit(0)
     else:
         os.kill(os.getpid(), signal.SIGINT)
+def pause():
+    print("Pausing")
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit
