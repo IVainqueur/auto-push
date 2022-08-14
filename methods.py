@@ -45,7 +45,8 @@ def clear():
     if "windows" in platform().lower():
         os.system('cls')
     else:
-        os.kill(os.getpid(), signal.SIGINT)
+        os.system('clear')
+
 def pause_or_play():
     global ispaused
     ispaused = not ispaused
