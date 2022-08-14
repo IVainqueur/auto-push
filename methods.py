@@ -195,7 +195,7 @@ def listenForKeys(key):
         return
     # If the key is not a single key command
     key_parsed = key.rsplit(" ")
-    command = OTHER_CMDS.get(key.rsplit(" ")[0], None)
+    command = OTHER_CMDS.get(key_parsed[0], None)
     if command:
         print(f"Calling {command} with parameters {key_parsed[1:]}")
         command(key_parsed[1:])
