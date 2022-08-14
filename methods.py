@@ -11,7 +11,7 @@ from platform import platform
 
 ispaused = False
 
-dir = os.getcwd()
+_dir = os.getcwd()
 
 class PauseException(Exception):
     pass
@@ -87,6 +87,7 @@ def colorcode(text, color = '', bg = ''):
     return f'{color}{bg}{text}{COLORS_WITH_CODES["clear"]}'
 
 def setbranch(dir, branch):
+    global _dir
     try:
         subprocess.call(["git", "-C", dir, "branch", "-M", branch])
         print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
