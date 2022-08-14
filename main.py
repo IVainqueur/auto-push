@@ -11,7 +11,6 @@ from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys
 # listener.start()
 
 
-
 atexit.register(beforeexit)
 
 """ 
