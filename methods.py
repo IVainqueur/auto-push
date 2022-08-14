@@ -47,6 +47,8 @@ def clear():
     else:
         os.system('clear')
 
+def printcommands()
+
 def pause_or_play():
     global ispaused
     ispaused = not ispaused
