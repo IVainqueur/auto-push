@@ -98,7 +98,8 @@ push(commit_template, dir, branch, interval, beforemethod)
 
 """ Wait for key presses """
 while True:
-    key = input("What ")
+    key = input()
+    print("You pressed")
 
 
 
