@@ -80,7 +80,9 @@ KEYS_WITH_ACTIONS = {
     "'p'": pause_or_play
 }
 
-OTHER
+OTHER_CMDS = {
+    'cb'
+}
 
 
 def param_dict(arr):
