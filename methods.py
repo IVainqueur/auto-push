@@ -199,6 +199,6 @@ def listenForKeys(key):
     command = OTHER_CMDS.get(key_parsed[0], None)
     if command:
         print(f"Calling {command} with parameters {key_parsed[1:]}")
-        command(key_parsed[1:])
+        command(*key_parsed[1:])
     
 
