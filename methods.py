@@ -46,6 +46,7 @@ def pause_or_play():
     else:
         print("===> RESUMING...")
 
+def change
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
     "'p'": pause_or_play
