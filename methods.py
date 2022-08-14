@@ -60,6 +60,7 @@ def colorcode(text, color = '', bg = ''):
         return f'{text}'
 
     if bg not in COLORS_WITH_CODES.keys():
+        
         return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
     return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
