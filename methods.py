@@ -186,6 +186,7 @@ def listenForKeys(key):
         return
     if len(key.rsplit(" ")) <= 1:
         return
-    
     # If the key is not a single key command
+    
+    
 
