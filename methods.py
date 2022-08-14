@@ -51,7 +51,7 @@ def clear():
 
 
 def printcommands():
-    print(color)
+    print(colorcode("q - quit\tp - pause or resume\tcb - change branch", color='ye'))
 
 
 def pause_or_play():
