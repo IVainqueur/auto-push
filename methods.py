@@ -179,3 +179,4 @@ def listenForKeys(key):
     action = KEYS_WITH_ACTIONS.get(repr(key), None)
     if action:
         action()
+        return
