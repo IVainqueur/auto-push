@@ -15,7 +15,7 @@ class PauseException(Exception):
     pass
 
 COLORS_WITH_CODES = {
-    "black": "\x1B[30m",
+    "black": "\u001b[30m",
     "bg-black": "\x1B[40m",
     "red": "\x1B[31m",
     "bg-red": "\x1B[41m",
