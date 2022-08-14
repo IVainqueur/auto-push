@@ -51,7 +51,8 @@ def change_branch():
     print("Changing branch")
     force_pause = not ispaused
     if force_pause:
-        
+        pause_or_play()
+    
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
