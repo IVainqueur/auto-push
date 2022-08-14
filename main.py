@@ -91,7 +91,7 @@ if "--before-mod" and "--before-method" in params.keys():
 
 
 """ Push periodically """
-Timer(5, partial(push, commit_template, dir, branch, interval, beforemethod))
+Timer(10, partial(push, commit_template, dir, branch, interval, beforemethod))
 
 """ Wait for key presses """
 while True:
