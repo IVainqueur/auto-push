@@ -76,7 +76,7 @@ def change_branch(newbranch = _branch, *args):
         pause_or_play()
 
     setbranch(_dir, newbranch)
-    
+
     if force_pause:
         pause_or_play()
 
@@ -191,6 +191,7 @@ def listenForKeys(key):
         action()
         return
     if len(key.rsplit(" ")) <= 1:
+        print(colorcode(""))
         return
     # If the key is not a single key command
     command = OTHER_CMDS.get(key.rsplit(" ")[0], None)
