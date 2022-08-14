@@ -101,6 +101,8 @@ def colorcode(text, color = '', bg = ''):
 
 def setbranch(dir, branch):
     global _dir
+    global _branch
+    _dir = dir
     _dir = dir
     try:
         subprocess.call(["git", "-C", dir, "branch", "-M", branch])
