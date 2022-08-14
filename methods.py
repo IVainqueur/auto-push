@@ -27,7 +27,7 @@ COLORS_WITH_CODES = {
     "bg-blue": "\u001b[44m",
     "white": "\u001b[37m",
     "bg-white": "\u001b[47m",
-    "clear": "\u001b[0m",
+    "clear": "\u001b[0m ",
     "none": ""
 }
 
