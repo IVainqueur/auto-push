@@ -6,7 +6,6 @@ import os
 from threading import Timer
 from uuid import uuid4
 from functools import partial
-from pynput.keyboard import Key
 from platform import platform
 
 ispaused = False
