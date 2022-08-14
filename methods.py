@@ -81,6 +81,8 @@ def commit_message(template):
 
 def push(ct, dir, branch, interval, beforemethod=None):
     try:
+        if ispaused:
+            raise
         if beforemethod:
             beforemethod()
         print("\n--> Pushing to {br}".format(br=colorcode(branch, "green")))
