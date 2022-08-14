@@ -56,13 +56,13 @@ def param_dict(arr):
     return classified
 
 def colorcode(text, color = '', bg = ''):
-    color = COLORS_WITH_CODES.get(color, "none")
-    bg = COLORS_WITH_CODES.get(bg, "none")
-    if color == 'none' and bg == 'none':
-        return f'{text}'
+    color = COLORS_WITH_CODES.get(color, "clear")
+    bg = COLORS_WITH_CODES.get(bg, "clear")
+    # if color == 'none' and bg == 'none':
+    #     return f'{text}'
 
-    if bg == 'none':
-        return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
+    # if bg == 'none':
+    #     return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
     return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
 
