@@ -194,9 +194,10 @@ def listenForKeys(key):
         print(colorcode("Unknown command", bg="bg-red"))
         return
     # If the key is not a single key command
+    key_parsed = key.rsplit(" ")
     command = OTHER_CMDS.get(key.rsplit(" ")[0], None)
     if command:
-        print(f"Calling {command} with parameters {}")
+        print(f"Calling {command} with parameters {key_parsed[1:]}")
         command(key.rsplit(" ")[1:])
     
 
