@@ -82,7 +82,7 @@ def commit_message(template):
 def push(ct, dir, branch, interval, beforemethod=None):
     try:
         if ispaused:
-            raise
+            raise PauseException
         if beforemethod:
             beforemethod()
         print("\n--> Pushing to {br}".format(br=colorcode(branch, "green")))
@@ -92,6 +92,8 @@ def push(ct, dir, branch, interval, beforemethod=None):
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "push", "origin", branch], stdout=subprocess.DEVNULL)
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
+    except PauseException:
+        pass
     except Exception as e:
         print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
         customexit()
