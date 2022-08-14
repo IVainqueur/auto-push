@@ -33,9 +33,12 @@ def customexit():
         os._exit(0)
     else:
         os.kill(os.getpid(), signal.SIGINT)
+def pause():
+    print("{0}".format(colorcode("Pausing", bg="bg-yellow")))
 
 KEYS_WITH_ACTIONS = {
-    "'q'": customexit
+    "'q'": customexit,
+    "'p'": pause
 }
 
 def param_dict(arr):
@@ -53,11 +56,13 @@ def param_dict(arr):
     return classified
 
 def colorcode(text, color = '', bg = ''):
-    if color not in COLORS_WITH_CODES.keys():
-        return f'{text}'
+    color = COLORS_WITH_CODES.get(color, "clear")
+    bg = COLORS_WITH_CODES.get(bg, "clear")
+    # if color == 'none' and bg == 'none':
+    #     return f'{text}'
 
-    if bg not in COLORS_WITH_CODES.keys():
-        return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
+    # if bg == 'none':
+    #     return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
     return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
 
