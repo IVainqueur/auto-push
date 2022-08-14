@@ -65,6 +65,7 @@ def change_branch(newbranch):
     force_pause = not ispaused
     if force_pause:
         pause_or_play()
+    
     setbranch(_dir, newbranch)
 
 KEYS_WITH_ACTIONS = {
