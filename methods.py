@@ -189,6 +189,6 @@ def listenForKeys(key):
     # If the key is not a single key command
     command = OTHER_CMDS.get(key.rsplit(" ")[0], None)
     if command:
-        command(key.rsplit(" ")[0])
+        command(key.rsplit(" ")[1:])
     
 
