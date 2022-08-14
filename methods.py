@@ -40,6 +40,8 @@ def customexit():
         os.kill(os.getpid(), signal.SIGINT)
 def pause_or_play():
     ispaused = not ispaused
+    if ispaused:
+        
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
