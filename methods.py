@@ -48,14 +48,14 @@ def pause_or_play():
     else:
         print("===> RESUMING...")
 
-def change_branch():
+def change_branch(newbranch):
     global ispaused
     global _dir
     print("Changing branch")
     force_pause = not ispaused
     if force_pause:
         pause_or_play()
-    setbranch(_dir, )
+    setbranch(_dir, newbranch)
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
