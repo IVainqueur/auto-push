@@ -47,6 +47,7 @@ def pause_or_play():
         print("===> RESUMING...")
 
 def change_branch():
+    global ispaused
     print("Changing branch")
     force_paused = not ispaused
 
