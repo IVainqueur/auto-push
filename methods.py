@@ -186,11 +186,12 @@ def help():
     print("Note: You can click q anytime to quit\n\n")
 
 def listenForKeys(key):
+    print("")
     action = KEYS_WITH_ACTIONS.get(repr(key), None)
     if action:
         action()
         return
-        
+
     if len(key.rsplit(" ")) <= 1:
         print(colorcode("Unknown command", bg="bg-red"))
         return
