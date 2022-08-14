@@ -4,7 +4,7 @@ import os
 import subprocess
 import re
 
-from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit
+from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 # from pynput.keyboard import Key, Listener
 
 # listener = Listener(on_press=listenForKeys)
@@ -71,12 +71,7 @@ except Exception as e:
 print('\n')
 
 """ SET UP THE BRANCH """
-try:
-    subprocess.call(["git", "-C", dir, "branch", "-M", branch])
-    print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
-except Exception as e:
-    print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
-    customexit()
+setbranch(dir, branch)
 
 
 """ Check if there is a module to run before the every push"""
