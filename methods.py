@@ -34,7 +34,7 @@ def customexit():
     else:
         os.kill(os.getpid(), signal.SIGINT)
 def pause():
-    print("Pausing")
+    print("{0}".format(colorcode("Pausing", bg="bg-yellow")))
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit
