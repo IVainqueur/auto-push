@@ -56,7 +56,7 @@ def param_dict(arr):
     return classified
 
 def colorcode(text, color = '', bg = ''):
-    color = COLORS_WITH_CODES
+    color = COLORS_WITH_CODES.get(color, "n")
     if color not in COLORS_WITH_CODES.keys() and bg not in COLORS_WITH_CODES.keys():
         return f'{text}'
 
