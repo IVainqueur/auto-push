@@ -48,6 +48,8 @@ def pause_or_play():
 
 def change_branch():
     print("Changing branch")
+
+    
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
     "'p'": pause_or_play
