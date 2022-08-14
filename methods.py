@@ -11,6 +11,8 @@ from platform import platform
 
 ispaused = False
 
+dir = os.getcwd()
+
 class PauseException(Exception):
     pass
 
