@@ -132,6 +132,7 @@ def push(ct, dir, branch, interval, beforemethod=None):
         subprocess.call(["git", "-C", dir, "push", "origin", branch], stdout=subprocess.DEVNULL)
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
         clear()
+        printcommands()
     except PauseException:
         pass
     except Exception as e:
