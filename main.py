@@ -9,7 +9,7 @@ from threading import Timer
 from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 
 if "windows" in platform().lower():
-        os.system('cls')
+    os.system('color')
 
 
 atexit.register(beforeexit)
@@ -51,18 +51,20 @@ regCheck = re.search(r"(\*\s((.*){2,}))", cur_branch.decode())
 cur_branch = regCheck.group(2)
 
 
-
 branch = cur_branch if "--branch" not in params.keys() else params["--branch"]
 
 """ Commit message template """
-commit_template = "auto-commit-#num#" if "--commit" not in params.keys() else params["--commit"]
+commit_template = "auto-commit-#num#" if "--commit" not in params.keys(
+) else params["--commit"]
 
 """ Interval """
 interval = 5
 try:
-    interval = 5 if "--interval" not in params.keys() else float(params["--interval"])
+    interval = 5 if "--interval" not in params.keys(
+    ) else float(params["--interval"])
 except ValueError:
-    print("{error}".format(error=colorcode("Given --interval is not a number", "white", "bg-red")))
+    print("{error}".format(error=colorcode(
+        "Given --interval is not a number", "white", "bg-red")))
     customexit()
 except Exception as e:
     print(f'ERROR: {e}')
@@ -90,14 +92,10 @@ if "--before-mod" and "--before-method" in params.keys():
 
 
 """ Push periodically """
-Timer(5, partial(push, commit_template, dir, branch, interval, beforemethod)).start()
+Timer(5, partial(push, commit_template, dir,
+      branch, interval, beforemethod)).start()
 
 """ Wait for key presses """
 while True:
     key = input()
     listenForKeys(key)
-
-
-
-
-    
