@@ -63,7 +63,7 @@ def pause_or_play():
         print("===> RESUMING...")
 
 
-def change_branch(newbranch):
+def change_branch(newbranch = _branch):
     global ispaused
     global _dir
     global _branch
