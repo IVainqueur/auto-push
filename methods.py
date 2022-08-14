@@ -38,7 +38,7 @@ def pause():
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
-    "'p'": 
+    "'p'": pause
 }
 
 def param_dict(arr):
