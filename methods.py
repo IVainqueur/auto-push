@@ -37,7 +37,8 @@ def pause():
     print("{0}".format(colorcode("Pausing", bg="bg-yellow")))
 
 KEYS_WITH_ACTIONS = {
-    "'q'": customexit
+    "'q'": customexit,
+    "'p'": 
 }
 
 def param_dict(arr):
