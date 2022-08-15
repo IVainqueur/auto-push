@@ -1,14 +1,16 @@
 import atexit
+from functools import partial
 import sys
 import os
 import subprocess
 import re
+from threading import Timer
+from platform import platform
 
-from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit
-# from pynput.keyboard import Key, Listener
+from methods import param_dict, colorcode, beforeexit, push, help, listenForKeys, customexit, setbranch
 
-# listener = Listener(on_press=listenForKeys)
-# listener.start()
+if "windows" in platform().lower():
+    os.system('')
 
 
 atexit.register(beforeexit)
@@ -50,18 +52,20 @@ regCheck = re.search(r"(\*\s((.*){2,}))", cur_branch.decode())
 cur_branch = regCheck.group(2)
 
 
-
 branch = cur_branch if "--branch" not in params.keys() else params["--branch"]
 
 """ Commit message template """
-commit_template = "auto-commit-#num#" if "--commit" not in params.keys() else params["--commit"]
+commit_template = "auto-commit-#num#" if "--commit" not in params.keys(
+) else params["--commit"]
 
 """ Interval """
 interval = 5
 try:
-    interval = 5 if "--interval" not in params.keys() else float(params["--interval"])
+    interval = 5 if "--interval" not in params.keys(
+    ) else float(params["--interval"])
 except ValueError:
-    print("{error}".format(error=colorcode("Given --interval is not a number", "white", "bg-red")))
+    print("{error}".format(error=colorcode(
+        "Given --interval is not a number", "white", "bg-red")))
     customexit()
 except Exception as e:
     print(f'ERROR: {e}')
@@ -71,12 +75,7 @@ except Exception as e:
 print('\n')
 
 """ SET UP THE BRANCH """
-try:
-    subprocess.call(["git", "-C", dir, "branch", "-M", branch])
-    print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
-except Exception as e:
-    print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
-    customexit()
+setbranch(dir, branch)
 
 
 """ Check if there is a module to run before the every push"""
@@ -94,14 +93,10 @@ if "--before-mod" and "--before-method" in params.keys():
 
 
 """ Push periodically """
-push(commit_template, dir, branch, interval, beforemethod)
+Timer(5, partial(push, commit_template, dir,
+      branch, interval, beforemethod)).start()
 
 """ Wait for key presses """
 while True:
     key = input()
     listenForKeys(key)
-
-
-
-
-    

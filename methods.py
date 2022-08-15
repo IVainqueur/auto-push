@@ -6,8 +6,16 @@ import os
 from threading import Timer
 from uuid import uuid4
 from functools import partial
-from pynput.keyboard import Key
 from platform import platform
+
+ispaused = False
+
+_dir = os.getcwd()
+_branch = "main"
+
+
+class PauseException(Exception):
+    pass
 
 
 COLORS_WITH_CODES = {
@@ -23,9 +31,9 @@ COLORS_WITH_CODES = {
     "bg-blue": "\x1B[44m",
     "white": "\x1B[37m",
     "bg-white": "\x1B[47m",
-    "clear": "\x1B[0m"
+    "clear": "\x1B[0m ",
+    "none": ""
 }
-
 
 
 def customexit():
@@ -33,13 +41,55 @@ def customexit():
         os._exit(0)
     else:
         os.kill(os.getpid(), signal.SIGINT)
-def pause():
-    print("{0}".format(colorcode("Pausing", bg="bg-yellow")))
+
+
+def clear():
+    if "windows" in platform().lower():
+        os.system('cls')
+    else:
+        os.system('clear')
+
+
+def printcommands():
+    print(colorcode("q - quit\tp - pause or resume\tcb - change branch", color='yellow'))
+
+
+def pause_or_play():
+    global ispaused
+    ispaused = not ispaused
+    if ispaused:
+        print("===> PAUSED")
+    else:
+        print("===> RESUMING...")
+
+
+def change_branch(newbranch = _branch, *args):
+    global ispaused
+    global _dir
+    global _branch
+    if newbranch == "":
+        return
+    
+    print(f"Changing branch to {newbranch}")
+    force_pause = not ispaused
+    if force_pause:
+        pause_or_play()
+
+    setbranch(_dir, newbranch)
+
+    if force_pause:
+        pause_or_play()
+
 
 KEYS_WITH_ACTIONS = {
     "'q'": customexit,
-    "'p'": pause
+    "'p'": pause_or_play
 }
+
+OTHER_CMDS = {
+    "cb": change_branch
+}
+
 
 def param_dict(arr):
     classified = {}
@@ -55,16 +105,30 @@ def param_dict(arr):
             print(e)
     return classified
 
-def colorcode(text, color = '', bg = ''):
-    color = COLORS_WITH_CODES.get(color, "clear")
-    bg = COLORS_WITH_CODES.get(bg, "clear")
+
+def colorcode(text, color='', bg=''):
+    os.system('')
+    color = COLORS_WITH_CODES.get(color, "")
+    bg = COLORS_WITH_CODES.get(bg, "")
     # if color == 'none' and bg == 'none':
     #     return f'{text}'
 
     # if bg == 'none':
     #     return f'{COLORS_WITH_CODES[color]}{text}{COLORS_WITH_CODES["clear"]}'
     
-    return f'{COLORS_WITH_CODES[color]}{COLORS_WITH_CODES[bg]}{text}{COLORS_WITH_CODES["clear"]}'
+    return f'{color}{bg}{text}{COLORS_WITH_CODES["clear"]}'
+
+def setbranch(dir, branch):
+    global _dir
+    global _branch
+    _dir = dir
+    _branch = branch
+    try:
+        subprocess.call(["git", "-C", dir, "branch", "-M", branch])
+        print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
+    except Exception as e:
+        print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
+        customexit()
 
 def commit_message(template):
     if re.search("#num#", template):
@@ -75,7 +139,14 @@ def commit_message(template):
 
 
 def push(ct, dir, branch, interval, beforemethod=None):
+    clear()
+    global ispaused
+    global _branch
+    branch = _branch
     try:
+        global ispaused
+        if ispaused:
+            raise PauseException
         if beforemethod:
             beforemethod()
         print("\n--> Pushing to {br}".format(br=colorcode(branch, "green")))
@@ -85,6 +156,9 @@ def push(ct, dir, branch, interval, beforemethod=None):
         # print("--> Set Branch to {br}".format(br=colorcode(branch, "green")))
         subprocess.call(["git", "-C", dir, "push", "origin", branch], stdout=subprocess.DEVNULL)
         print("--> Pushed to {br}".format(br=colorcode(branch, "green")))
+        printcommands()
+    except PauseException:
+        pass
     except Exception as e:
         print("{error}".format(error=colorcode(repr(e), "white", "bg-red")))
         customexit()
@@ -117,3 +191,16 @@ def listenForKeys(key):
     action = KEYS_WITH_ACTIONS.get(repr(key), None)
     if action:
         action()
+        return
+
+    if len(key.rsplit(" ")) <= 1:
+        print(colorcode("Unknown command", bg="bg-red"))
+        return
+    # If the key is not a single key command
+    key_parsed = key.rsplit(" ")
+    command = OTHER_CMDS.get(key_parsed[0], None)
+    if command:
+        print(f"Calling {command} with parameters {key_parsed[1:]}")
+        command(*key_parsed[1:])
+    
+

@@ -18,7 +18,7 @@ def is_admin():
 if is_admin():
     cmd = [
         r'''if not exist "C:\\Program Files\auto-push" mkdir "C:\\Program Files\auto-push"''',
-        f'''del "C:\\\\Program Files\\auto-push.exe" && copy "{_path}\\auto-push.exe" "C:\\\\Program Files\\auto-push"''',
+        f'''copy /Y "{_path}\\auto-push.exe" "C:\\\\Program Files\\auto-push"''',
         "msg %username% Auto-Push is has been installed successfully. Final step is to add 'C:\\\\Program Files\\auto-push' to the PATH environment variable",
         r'''"C:\Windows\system32\rundll32.exe" sysdm.cpl,EditEnvironmentVariables'''
     ]
