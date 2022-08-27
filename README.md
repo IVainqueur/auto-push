@@ -22,6 +22,7 @@ The --commit above will be turned into 'custom-[uuid]-automatic'
 
 **--interval**      is the interval between pushes in minutes. Default is 5 minutes
 
-Note: - You can press q anytime to quit
-      - p is for pausing or resuming
-      - cb [newbranch] is for changing to a new branch while it's running
+Note: 
+- You can press q anytime to quit
+- p is for pausing or resuming
+- cb [newbranch] is for changing to a new branch while it's running
