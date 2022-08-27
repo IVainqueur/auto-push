@@ -15,7 +15,7 @@ To install auto-push, refer to the included INSTALL.md
 
 **--branch**        is the branch to which you want to push. Default is the result of the 'git branch' command.
 
-**--commit* *       is a template for the commit message. Default is 'auto-commit-[uuid]
+**--commit**       is a template for the commit message. Default is 'auto-commit-[uuid]
         For example: if --commit='auto-commit' then all the commit message will be 'auto-commit-[uuid]'.
         Note: You can also put the uuid anywhere else in the string like so: --commit='commit-#num#-automatic'
 The --commit above will be turned into 'custom-[uuid]-automatic'
