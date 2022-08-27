@@ -9,7 +9,7 @@ You're welcome😎
 To install auto-push, refer to the included INSTALL.md
 
 # Usage
-```auto-push [--dir] [--branch] [--commit] [--interval]```
+```auto-push [--dir=DIR] [--branch=BRANCH] [--commit=MESSAGE] [--interval=MINUTES]```
 
 **--dir**   is the path to the directory you want to push. Defaults to CURRENT DIRECTORY
 
