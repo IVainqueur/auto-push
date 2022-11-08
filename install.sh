@@ -13,7 +13,7 @@ echo "export PATH=\$PATH:$HOME/.auto-push;" >> ~/.bashrc
 source ~/.bashrc
 
 GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+NC='\033[0m' # No Color/ Clear all formatting
 
 echo "${GREEN}===================================="
 echo "   THANKS FOR INSTALLING AUTO-PUSH  "
